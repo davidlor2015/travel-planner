@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from app.core.init_db import init_db
 import app.models
+from app.routes import auth
 
 app = FastAPI(title="Travel Planner API")
+app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 
 @app.on_event("startup")
 def on_startup():
