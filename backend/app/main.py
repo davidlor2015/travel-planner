@@ -2,11 +2,14 @@ from fastapi import FastAPI, Depends
 from fastapi.security import HTTPBearer
 from app.core.init_db import init_db
 from app.models.user import User
-from app.routes import auth
+from app.routes import auth, trips
 from app.core.auth import get_current_user
 from fastapi.openapi.models import SecurityScheme
 from fastapi.openapi.utils import get_openapi
+from app.core.database import Base, engine
+import app.models
 
+Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI(
@@ -14,6 +17,7 @@ app = FastAPI(
     security=[{"HTTPBearer": []}]
 )
 app.include_router(auth.router, prefix="/auth", tags=["Auth"])
+app.include_router(trips.router)
 
 def custom_openapi():
     if app.openapi_schema:
