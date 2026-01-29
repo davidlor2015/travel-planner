@@ -17,4 +17,12 @@ class Trip(Base):
 
     budget = Column(Float, nullable=True)
 
+    # existing relationship
     user = relationship("User", back_populates="trips")
+
+   
+    items = relationship(
+        "ItineraryItem",
+        back_populates="trip",
+        cascade="all, delete-orphan"
+    )

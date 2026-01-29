@@ -8,13 +8,19 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(
-    email: string,
-    password: string
-  ): Observable<{ access_token: string }> {
+  login(email: string, password: string) {
+    const body = new URLSearchParams();
+    body.set('username', email);
+    body.set('password', password);
+  
     return this.http.post<{ access_token: string }>(
       `${this.apiUrl}/auth/login`,
-      { email, password }
+      body.toString(),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
     );
   }
 

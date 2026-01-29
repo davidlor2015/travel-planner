@@ -1,5 +1,7 @@
 from fastapi import FastAPI, Depends
 from fastapi.security import HTTPBearer
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.core.init_db import init_db
 from app.models.user import User
 from app.routes import auth, trips, itinerary_items
@@ -16,6 +18,14 @@ app = FastAPI(
     title="Travel Planner API",
     security=[{"HTTPBearer": []}]
 )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4200"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 app.include_router(trips.router)
 app.include_router(itinerary_items.router)
