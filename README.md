@@ -26,7 +26,7 @@ This project demonstrates backend/frontend integration, secure authentication, a
   - Service-based API layer
   - JWT interceptor for authenticated requests
 
-- ⚙️**Backend**
+- **Backend**
   - FastAPI + SQLAlchemy
   - OAuth2-compatible login flow
   - CORS-enabled for SPA integration
@@ -51,29 +51,7 @@ This project demonstrates backend/frontend integration, secure authentication, a
 ### Tooling
 - Git & GitHub
 - REST APIs
-- Modular project structure
 
----
-
-##  Project Structure
-
-travel-planner/
-├── backend/
-│ ├── app/
-│ │ ├── models/
-│ │ ├── routes/
-│ │ ├── schemas/
-│ │ └── main.py
-│ └── requirements.txt
-│
-└── frontend/
-├── src/app/
-│ ├── auth/
-│ ├── trips/
-│ ├── itinerary/
-│ └── core/
-└── angular.json
----
 
 ##  Authentication Flow
 
